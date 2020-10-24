@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "932781612812",
+    "firebase_url": "https://saude-no-bolso-56235.firebaseio.com",
+    "project_id": "saude-no-bolso-56235",
+    "storage_bucket": "saude-no-bolso-56235.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:932781612812:android:45f033757341cbb29ab329",
+        "android_client_info": {
+          "package_name": "com.example.saude_no_bolso"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "932781612812-2qiu0tqbq56u8uqn9djesjltql4hed72.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQdQ7THYYM0kGKoMsQ4XW0LAtrRL90epM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "932781612812-2qiu0tqbq56u8uqn9djesjltql4hed72.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
