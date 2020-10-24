@@ -24,14 +24,6 @@ body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Text("Código gerado com o texto:",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 24,
-              ),
-            ),
-            SizedBox(height: 16,),
-
             QrImage(
               data: '1234455',
               gapless: true,
