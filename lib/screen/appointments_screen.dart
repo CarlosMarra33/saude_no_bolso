@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import '../screen/profile_screen.dart';
+import '../screen/appointment_screen.dart';
 import 'package:saude_no_bolso/common/custom_drawer/custom_drawer.dart';
 
 class AppointmentsScreen extends StatelessWidget {
-  List list = [0, 1, 2, 3, 4];
+  List list = [0,1,2,3,4,5,6,7,8,9];
 
   @override
   Widget build(BuildContext context) {
@@ -22,31 +22,28 @@ class AppointmentsScreen extends StatelessWidget {
         child: ListView.builder(
           itemCount: list.length,
           itemBuilder: (context, index) {
-            return InkWell(
-              child: Card(
-                color: Color.fromRGBO(255, 255, 255, 1),
+            return Card(
+              color: Color.fromRGBO(255, 255, 255, 1),
+              child: InkWell(
                 child: Padding(
                   padding: const EdgeInsets.only(
-                    top: 32.0, bottom: 32.0, left: 16.0, right: 16.0
-                    ),
+                      top: 32.0, bottom: 32.0, left: 16.0, right: 16.0),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        list[index].toString(),
-                        // 'Note Title',
-                        style: TextStyle(
-                          fontSize: 22, fontWeight: FontWeight.bold
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          list[index].toString(),
+                          // 'Note Title',
+                          style: TextStyle(
+                              fontSize: 22, fontWeight: FontWeight.bold),
                         ),
-                      ),
-                      Text(
-                        'Note Title',
-                      )
-                    ]
-                  ),
-                )
+                        Text(
+                          'Note Title',
+                        )
+                      ]),
+                ),
+                onTap: () => Navigator.push(context,MaterialPageRoute(builder: (context) => AppointmentScreen())),
               ),
-              // onTap: Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen())),
             );
           },
         ),
