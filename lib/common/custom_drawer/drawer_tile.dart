@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:saude_no_bolso/screen/appointments_screen.dart';
+import 'package:saude_no_bolso/screen/chats.dart';
 import 'package:saude_no_bolso/screen/exam_screen.dart';
+import 'package:saude_no_bolso/screen/exams_screen.dart';
 import 'package:saude_no_bolso/screen/login_screen.dart';
 import 'package:saude_no_bolso/screen/profile_screen.dart';
 import 'package:saude_no_bolso/screen/qrcode_screen.dart';
@@ -15,11 +17,12 @@ class DrawerTile extends StatelessWidget {
 
   List _screens = [
     ProfileScreen(),
-    ExamScreen(),
+    ExamsScreen(),
     QrCodeScreen(),
     AppointmentsScreen(),
     SettingsScreen(),
     LoginScreen(),
+    Chats(),
   ];
 
   @override
@@ -35,12 +38,12 @@ class DrawerTile extends StatelessWidget {
           children: [
             Icon(
               iconData,
-              size: 32,
+              size: 25,
               color: Colors.grey[700],
             ),
             Text(
               title,
-              style: TextStyle(fontSize: 16, color: Colors.grey[700]),
+              style: TextStyle(fontSize: 14, color: Colors.grey[700]),
             )
           ],
         ));
