@@ -87,104 +87,143 @@ class _LoginScreenState extends State<LoginScreen>
           padding: EdgeInsets.only(bottom: bottom),
           reverse: true,
           child: Material(
-            child: Container(
-              color: Colors.white,
-              child: Column(
-                children: [
-                  InkWell(
-                    splashColor: Colors.transparent,
-                    onTap: () {
-                      FocusScope.of(context).requestFocus(FocusNode());
-                    },
-                    child: Container(
-                      child: Column(
-                        children: <Widget>[
-                          Padding(
-                            padding: EdgeInsets.all(27),
-                            child: Image.network(
-                              'https://cdn.pixabay.com/photo/2017/09/02/22/10/dolphin-2708695_960_720.png',
-                              scale: 3,
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(left: 60, right: 60),
-                            child: Column(
-                              children: [
-                                Form(
-                                  //onChanged: () => enabledLoginButton('email'),
-                                  autovalidate: true,
-                                  child: TextFormField(
-                                    validator: (value) =>
-                                        EmailValidator.validate(value)
-                                            ? null
-                                            : "Entre com um email válido",
-                                    controller: _email,
-                                    decoration: InputDecoration(
-                                        //hintStyle: ,
-                                        filled: true,
-                                        fillColor: Colors.green[100],
-                                        border: InputBorder.none,
-                                        icon: Icon(Icons.email),
-                                        hintText: 'Email'),
-                                    //focusNode: focusNodeEmail,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                Form(
-                                  onChanged: () {
-                                    _password.text.toString().length > 5
-                                        ? passwordValidator = true
-                                        : null;
-                                  },
-                                  autovalidate: true,
-                                  child: TextFormField(
-                                    validator: (value) => value
-                                                    .toString()
-                                                    .length >
-                                                5 &&
-                                            value.toString().length < 16
-                                        ? null
-                                        : "Necessária senha entre 6 e 15 dígitos",
-                                    controller: _password,
-                                    decoration: InputDecoration(
-                                        filled: true,
-                                        fillColor: Colors.green[100],
-                                        border: InputBorder.none,
-                                        icon: Icon(Icons.lock),
-                                        hintText: 'Senha'),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            height: 50,
-                          ),
-                          _buildRaisedButton(),
-                          SizedBox(
-                            height: 30,
-                          ),
-                          FlatButton(
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => SignUpScreen()),
-                                );
-                              },
-                              child: Text(
-                                'Cadastre-se!',
+            child: Column(
+              children: [
+                Container(
+                  color: Color(0xFF1A8474),
+                  height: MediaQuery.of(context).size.height * 5 / 10,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'LOGO',
+                        style: TextStyle(
+                          fontSize: 40,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                Container(
+                  color: Color(0xFFFFFFA),
+                  height: MediaQuery.of(context).size.height * 5 / 10,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 60),
+                    child: Column(
+                      children: [
+                        Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Text(
+                                'Fazer login',
                                 style: TextStyle(
-                                    color: Colors.green, fontSize: 17),
-                              ))
-                        ],
-                      ),
+                                  color: Color(0xFF6A6180),
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.bold,
+                                  shadows: <Shadow>[
+                                    Shadow(
+                                      offset: Offset(4, 4),
+                                      blurRadius: 4.0,
+                                      color: Color.fromARGB(80, 0, 0, 0),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              FlatButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              SignUpScreen()));
+                                },
+                                child: Text(
+                                  'Criar uma conta',
+                                  style: TextStyle(
+                                    color: Color(0xFF1A8474),
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    shadows: <Shadow>[
+                                      Shadow(
+                                        offset: Offset(4, 4.5),
+                                        blurRadius: 4.0,
+                                        color: Color.fromARGB(80, 0, 0, 0),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ]),
+                        Container(
+                          child: Column(
+                            children: <Widget>[
+                              Padding(
+                                padding: EdgeInsets.only(
+                                    top: 15, left: 60, right: 60),
+                                child: Column(
+                                  children: [
+                                    Form(
+                                      autovalidate: true,
+                                      child: TextFormField(
+                                        validator: (value) =>
+                                            EmailValidator.validate(value)
+                                                ? null
+                                                : "Entre com um email válido",
+                                        controller: _email,
+                                        decoration: InputDecoration(
+                                          //hintStyle:
+                                          filled: true,
+                                          fillColor: Color(0xFFE6E6F0),
+                                          border: InputBorder.none,
+                                          hintText: 'E-mail',
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 15,
+                                    ),
+                                    Form(
+                                      onChanged: () {
+                                        _password.text.toString().length > 5
+                                            ? passwordValidator = true
+                                            : null;
+                                      },
+                                      autovalidate: true,
+                                      child: TextFormField(
+                                        validator: (value) => value
+                                                        .toString()
+                                                        .length >
+                                                    5 &&
+                                                value.toString().length < 16
+                                            ? null
+                                            : "Necessária senha entre 6 e 15 dígitos",
+                                        controller: _password,
+                                        decoration: InputDecoration(
+                                            filled: true,
+                                            fillColor: Color(0xFFE6E6F0),
+                                            border: InputBorder.none,
+                                            hintText: 'Senha'),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top: 20),
+                                child: _buildRaisedButton(),
+                              ),
+
+                            ],
+                          ),
+                        )
+                      ],
                     ),
                   ),
-                ],
-              ),
+                )
+              ],
             ),
           ),
         ));
@@ -208,14 +247,14 @@ class _LoginScreenState extends State<LoginScreen>
           }
         }
       },
-      color: Colors.green,
+      color: Color(0xFF1A8474),
       textColor: Colors.white,
       elevation: 10,
       child: Text(
         'Entrar',
         style: TextStyle(fontSize: 17),
       ),
-      padding: EdgeInsets.only(top: 10, bottom: 10, left: 70, right: 70),
+      padding: EdgeInsets.only(top: 15, bottom: 15, left: 110, right: 110),
     );
   }
 }
