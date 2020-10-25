@@ -10,17 +10,17 @@ class Exam {
     this.value = value;
     this.date;
   }
-
+  List examTypeList = ["Glicemia Jejum","Glicemia Casual","TTOG","Colesterol Total","LDLc","ALT","HDLc","Triglicerideos"];
   Exam.fromSnapshot(DocumentSnapshot snapshot)
       : type = snapshot['type'],
         value = snapshot['value'],
         date = snapshot['date'];
-
+    
   countValue(String value, String type) {    
     double points = 0.0;
 
     var valueDouble = double.parse(value);
-    if (type == "glicemiaJejum") {
+    if (type == "Glicemia Jejum") {
       if (valueDouble < 100) {
         points = 100;
       } else if (valueDouble > 100 && valueDouble < 126) {
@@ -28,7 +28,7 @@ class Exam {
       } else if (valueDouble >= 126) {
         points = 0;
       }
-    } else if (type == "glicemiaCasual") {
+    } else if (type == "Glicemia Casual") {
       if (valueDouble >= 200) {
         points = 0;
       } else {
@@ -42,7 +42,7 @@ class Exam {
       } else if (valueDouble >= 200) {
         points = 0;
       }
-    } else if (type == "ColesterolTotal") {
+    } else if (type == "Colesterol Total") {
       if (valueDouble < 150) {
         points = 100;
       } else if (valueDouble >= 150 && valueDouble <= 169) {
@@ -70,7 +70,7 @@ class Exam {
       } else {
         points = 0;
       }
-    } else if (type == "triglicerideos") {
+    } else if (type == "Triglicerideos") {
       if (valueDouble < 100) {
         points = 100;
       } else if (valueDouble >= 100 && valueDouble < 129) {
