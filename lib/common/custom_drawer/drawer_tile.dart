@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:saude_no_bolso/screen/appointments_screen.dart';
-import 'package:saude_no_bolso/screen/exam_screen.dart';
+import 'package:saude_no_bolso/screen/exams_screen.dart';
 import 'package:saude_no_bolso/screen/login_screen.dart';
 import 'package:saude_no_bolso/screen/profile_screen.dart';
 import 'package:saude_no_bolso/screen/qrcode_screen.dart';
@@ -15,7 +15,7 @@ class DrawerTile extends StatelessWidget {
 
   List _screens = [
     ProfileScreen(),
-    ExamScreen(),
+    ExamsScreen(),
     QrCodeScreen(),
     AppointmentsScreen(),
     SettingsScreen(),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:saude_no_bolso/common/custom_drawer/custom_drawer.dart';
 import 'package:saude_no_bolso/globals.dart' as globals;
 
-import 'exam_screen.dart';
+import 'exams_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
   @override
@@ -14,8 +14,9 @@ class ProfileScreen extends StatelessWidget {
         titleSpacing: MediaQuery.of(context).size.width * 2.8 / 10,
         backgroundColor: Color.fromRGBO(26, 132, 116, 1),
         elevation: 0,
-        title: Text("Perfil",
-          style: TextStyle(  
+        title: Text(
+          "Perfil",
+          style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 22,
           ),
@@ -174,8 +175,8 @@ class ProfileScreen extends StatelessWidget {
                             child: Text(
                               '${globals.patient.birthdate}',
                               style: TextStyle(
-                                color: Color(0xFF6A6180),
-                                fontWeight: FontWeight.bold),
+                                  color: Color(0xFF6A6180),
+                                  fontWeight: FontWeight.bold),
                             ),
                           ),
                         ),
@@ -261,30 +262,28 @@ class ProfileScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-              )
-          ),
+              )),
           Positioned(
-            bottom: MediaQuery.of(context).size.height * 0.43 / 10,
-            left: MediaQuery.of(context).size.width * 1.7 / 10,
-            width: MediaQuery.of(context).size.width * 6.5 / 10,
-            height: MediaQuery.of(context).size.height * 0.8 / 10,
-            child: RaisedButton(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10)
-              ),
-              onPressed: () { 
-                Navigator.push(context,MaterialPageRoute(builder: (context) => ExamScreen()));
-              },
-              color: Color(0xFF1A8474),
-              child: Text('Adcionar Exame',
-                style: TextStyle(  
-                  color: Colors.white,
-                  fontSize: 18,
+              bottom: MediaQuery.of(context).size.height * 0.43 / 10,
+              left: MediaQuery.of(context).size.width * 1.7 / 10,
+              width: MediaQuery.of(context).size.width * 6.5 / 10,
+              height: MediaQuery.of(context).size.height * 0.8 / 10,
+              child: RaisedButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => ExamsScreen()));
+                },
+                color: Color(0xFF1A8474),
+                child: Text(
+                  'Adcionar Exame',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                  ),
                 ),
-              ),
-            )
-          )
-
+              ))
         ],
       ),
     );
