@@ -13,10 +13,9 @@ class SettingsScreen extends StatelessWidget {
         titleSpacing: MediaQuery.of(context).size.width * 1.9 / 10,
         backgroundColor: Color.fromRGBO(26, 132, 116, 1),
         elevation: 0,
-        title: Text("Configurações",
-          style: TextStyle(
-            fontWeight: FontWeight.bold
-          ),
+        title: Text(
+          "Configurações",
+          style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
       body: Stack(
@@ -70,115 +69,114 @@ class SettingsScreen extends StatelessWidget {
                         thickness: 3,
                       ),
                       SizedBox(
-                    height: 10,
-                  ),
-                  TextFormField(
-                    decoration: InputDecoration(
-                      labelText: 'Nome',
-                      labelStyle: TextStyle(
-                        color: Colors.black,
+                        height: 10,
                       ),
-                        filled: true,
-                        fillColor: Color(0xFFE6E6F0),
-                        border: InputBorder.none,                        
-                        hintText: '${globals.patient.firstName}'),
-                  ),
+                      TextFormField(
+                        decoration: InputDecoration(
+                            labelText: 'Nome',
+                            labelStyle: TextStyle(
+                              color: Colors.black,
+                            ),
+                            filled: true,
+                            fillColor: Color(0xFFE6E6F0),
+                            border: InputBorder.none,
+                            hintText: '${globals.patient.firstName}'),
+                      ),
                       SizedBox(
-                    height: 10,
-                  ),
-                  TextFormField(
-                    decoration: InputDecoration(
-                      labelText: 'Sobrenome',
-                      labelStyle: TextStyle(
-                        color: Colors.black,
+                        height: 10,
                       ),
-                        filled: true,
-                        fillColor: Color(0xFFE6E6F0),
-                        border: InputBorder.none,                        
-                        hintText: '${globals.patient.lastName}'),
-                  ),
+                      TextFormField(
+                        decoration: InputDecoration(
+                            labelText: 'Sobrenome',
+                            labelStyle: TextStyle(
+                              color: Colors.black,
+                            ),
+                            filled: true,
+                            fillColor: Color(0xFFE6E6F0),
+                            border: InputBorder.none,
+                            hintText: '${globals.patient.lastName}'),
+                      ),
                       SizedBox(
-                    height: 10,
-                  ),
-                  TextFormField(
-                    decoration: InputDecoration(
-                      labelText: 'Email',
-                      labelStyle: TextStyle(
-                        color: Colors.black,
+                        height: 10,
                       ),
-                        filled: true,
-                        fillColor: Color(0xFFE6E6F0),
-                        border: InputBorder.none,                        
-                        hintText: '${globals.patient.email}'),
-                  ),
+                      TextFormField(
+                        decoration: InputDecoration(
+                            labelText: 'Email',
+                            labelStyle: TextStyle(
+                              color: Colors.black,
+                            ),
+                            filled: true,
+                            fillColor: Color(0xFFE6E6F0),
+                            border: InputBorder.none,
+                            hintText: '${globals.patient.email}'),
+                      ),
                       SizedBox(
-                    height: 10,
-                  ),
-                  TextFormField(
-                    decoration: InputDecoration(
-                      labelText: 'Celular',
-                      labelStyle: TextStyle(
-                        color: Colors.black,
+                        height: 10,
                       ),
-                        filled: true,
-                        fillColor: Color(0xFFE6E6F0),
-                        border: InputBorder.none,                        
-                        hintText: '${globals.patient.phone}'),
-                  ),
+                      TextFormField(
+                        decoration: InputDecoration(
+                            labelText: 'Celular',
+                            labelStyle: TextStyle(
+                              color: Colors.black,
+                            ),
+                            filled: true,
+                            fillColor: Color(0xFFE6E6F0),
+                            border: InputBorder.none,
+                            hintText: '${globals.patient.phone}'),
+                      ),
                       SizedBox(
-                    height: 10,
-                  ),
-                  TextFormField(
-                    decoration: InputDecoration(
-                      labelText: 'Número de emergência',
-                      labelStyle: TextStyle(
-                        color: Colors.black,
+                        height: 10,
                       ),
-                        filled: true,
-                        fillColor: Color(0xFFE6E6F0),
-                        border: InputBorder.none,                        
-                        hintText: '${globals.patient.emergencyPhone}'),
-                  ),
+                      TextFormField(
+                        decoration: InputDecoration(
+                            labelText: 'Número de emergência',
+                            labelStyle: TextStyle(
+                              color: Colors.black,
+                            ),
+                            filled: true,
+                            fillColor: Color(0xFFE6E6F0),
+                            border: InputBorder.none,
+                            hintText: '${globals.patient.emergencyPhone}'),
+                      ),
                       SizedBox(
-                    height: 10,
-                  ),
-                  TextFormField(
-                    decoration: InputDecoration(
-                      labelText: 'Senha',
-                      labelStyle: TextStyle(
-                        color: Colors.black,
+                        height: 10,
                       ),
-                        filled: true,
-                        fillColor: Color(0xFFE6E6F0),
-                        border: InputBorder.none,                        
-                        hintText: '************'),
-                  ), 
+                      TextFormField(
+                        decoration: InputDecoration(
+                            labelText: 'Senha',
+                            labelStyle: TextStyle(
+                              color: Colors.black,
+                            ),
+                            filled: true,
+                            fillColor: Color(0xFFE6E6F0),
+                            border: InputBorder.none,
+                            hintText: '************'),
+                      ),
                     ],
                   ),
                 ),
-              )
-              ),
-              Positioned(
-            bottom: MediaQuery.of(context).size.height * 0.2 / 10,
-            left: MediaQuery.of(context).size.width * 1.7 / 10,
-            width: MediaQuery.of(context).size.width * 6.5 / 10,
-            height: MediaQuery.of(context).size.height * 0.7 / 10,
-            child: RaisedButton(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10)
-              ),
-              onPressed: () { 
-                Navigator.push(context,MaterialPageRoute(builder: (context) => ProfileScreen()));
-              },
-              color: Color(0xFF04D361),
-              child: Text('Salvar Alteração',
-                style: TextStyle(  
-                  color: Colors.white,
-                  fontSize: 18,
+              )),
+          Positioned(
+              bottom: MediaQuery.of(context).size.height * 0.2 / 10,
+              left: MediaQuery.of(context).size.width * 1.7 / 10,
+              width: MediaQuery.of(context).size.width * 6.5 / 10,
+              height: MediaQuery.of(context).size.height * 0.7 / 10,
+              child: RaisedButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => ProfileScreen()));
+                },
+                color: Color(0xFF04D361),
+                child: Text(
+                  'Salvar Alteração',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                  ),
                 ),
-              ),
-            )
-          )
+              ))
         ],
       ),
     );
