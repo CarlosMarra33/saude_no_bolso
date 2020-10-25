@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 
 import 'drawer_tile.dart';
 
+import 'package:saude_no_bolso/globals.dart' as globals;
+
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
 class CustomDrawer extends StatelessWidget {
@@ -52,7 +54,7 @@ class CustomDrawer extends StatelessWidget {
                     height: 20,
                   ),
                   Text(
-                    "Olá, Cayo!",
+                    "Olá, ${globals.patient.firstName}!",
                     style: TextStyle(
                       color: Colors.white,
                       shadows: <Shadow>[
@@ -105,7 +107,7 @@ class CustomDrawer extends StatelessWidget {
             child: DrawerTile(
               iconData: Icons.settings,
               title: 'CONFIGURAÇÃO',
-              pageNumber: 3,
+              pageNumber: 4,
             ),
           ),
           Padding(
@@ -113,7 +115,7 @@ class CustomDrawer extends StatelessWidget {
             child: DrawerTile(
               iconData: Icons.exit_to_app_rounded,
               title: 'LOGOUT',
-              pageNumber: 4,
+              pageNumber: 5,
             ),
           ),
           Padding(

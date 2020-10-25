@@ -4,6 +4,7 @@ import 'package:saude_no_bolso/screen/exam_screen.dart';
 import 'package:saude_no_bolso/screen/login_screen.dart';
 import 'package:saude_no_bolso/screen/profile_screen.dart';
 import 'package:saude_no_bolso/screen/qrcode_screen.dart';
+import 'package:saude_no_bolso/screen/settings_patient_screen.dart';
 
 class DrawerTile extends StatelessWidget {
   DrawerTile({this.iconData, this.title, this.pageNumber});
@@ -17,7 +18,8 @@ class DrawerTile extends StatelessWidget {
     ExamScreen(),
     QrCodeScreen(),
     AppointmentsScreen(),
-    LoginScreen()
+    SettingsScreen(),
+    LoginScreen(),
   ];
 
   @override

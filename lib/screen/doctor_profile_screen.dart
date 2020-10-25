@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:saude_no_bolso/common/custom_drawer/custom_drawer.dart';
-import 'package:saude_no_bolso/globals.dart' as globals;
 
 import 'exam_screen.dart';
 
-class ProfileScreen extends StatelessWidget {
-  @override
+class DoctorProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: false,
@@ -56,7 +54,7 @@ class ProfileScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              '${globals.patient.firstName}',
+                              'Cayo Cesar',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
@@ -68,7 +66,7 @@ class ProfileScreen extends StatelessWidget {
                               child: Row(
                                 children: [
                                   Text(
-                                    'Nivel: ',
+                                    'Especialidade: ',
                                     style: TextStyle(
                                       color: Colors.white,
                                       // fontWeight: FontWeight.bold,
@@ -76,7 +74,7 @@ class ProfileScreen extends StatelessWidget {
                                     ),
                                   ),
                                   Text(
-                                    'Saudavel',
+                                    'Ortopedia',
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
@@ -99,11 +97,13 @@ class ProfileScreen extends StatelessWidget {
             ),
           ),
           Positioned(
+            
               left: MediaQuery.of(context).size.width / 30,
-              top: MediaQuery.of(context).size.height / 4.7,
-              height: MediaQuery.of(context).size.height * 5.1 / 10,
+              top: MediaQuery.of(context).size.height / 6.7,
+              height: MediaQuery.of(context).size.height * 5.7 / 10,
               width: MediaQuery.of(context).size.width * 9.35 / 10,
               child: Card(
+                
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15),
                 ),
@@ -146,7 +146,7 @@ class ProfileScreen extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.all(5.0),
                             child: Text(
-                              '${globals.patient.email}',
+                              'Matheus@gmail.com',
                               style: TextStyle(
                                   color: Color(0xFF6A6180),
                                   fontWeight: FontWeight.bold),
@@ -172,7 +172,7 @@ class ProfileScreen extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.all(5.0),
                             child: Text(
-                              '${globals.patient.birthdate}',
+                              '24/10/2020',
                               style: TextStyle(
                                 color: Color(0xFF6A6180),
                                 fontWeight: FontWeight.bold),
@@ -198,7 +198,7 @@ class ProfileScreen extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.all(5.0),
                             child: Text(
-                              '${globals.patient.phone}',
+                              '2222222',
                               style: TextStyle(
                                   color: Color(0xFF6A6180),
                                   fontWeight: FontWeight.bold),
@@ -224,7 +224,7 @@ class ProfileScreen extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.all(5.0),
                             child: Text(
-                              '${globals.patient.emergencyPhone}',
+                              '22222222',
                               style: TextStyle(
                                   color: Color(0xFF6A6180),
                                   fontWeight: FontWeight.bold),
@@ -233,7 +233,7 @@ class ProfileScreen extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        'Tipo songuineo',
+                        'CRM',
                         style: TextStyle(
                           color: Colors.grey[600],
                           fontSize: 15,
@@ -250,7 +250,7 @@ class ProfileScreen extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.all(5.0),
                             child: Text(
-                              '${globals.patient.bloodType}',
+                              '222222',
                               style: TextStyle(
                                   color: Color(0xFF6A6180),
                                   fontWeight: FontWeight.bold),
@@ -263,27 +263,27 @@ class ProfileScreen extends StatelessWidget {
                 ),
               )
           ),
-          Positioned(
-            bottom: MediaQuery.of(context).size.height * 0.43 / 10,
-            left: MediaQuery.of(context).size.width * 1.7 / 10,
-            width: MediaQuery.of(context).size.width * 6.5 / 10,
-            height: MediaQuery.of(context).size.height * 0.8 / 10,
-            child: RaisedButton(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10)
-              ),
-              onPressed: () { 
-                Navigator.push(context,MaterialPageRoute(builder: (context) => ExamScreen()));
-              },
-              color: Color(0xFF1A8474),
-              child: Text('Adcionar Exame',
-                style: TextStyle(  
-                  color: Colors.white,
-                  fontSize: 18,
-                ),
-              ),
-            )
-          )
+          // Positioned(
+          //   bottom: MediaQuery.of(context).size.height * 0.43 / 10,
+          //   left: MediaQuery.of(context).size.width * 1.7 / 10,
+          //   width: MediaQuery.of(context).size.width * 6.5 / 10,
+          //   height: MediaQuery.of(context).size.height * 0.8 / 10,
+          //   child: RaisedButton(
+          //     shape: RoundedRectangleBorder(
+          //       borderRadius: BorderRadius.circular(10)
+          //     ),
+          //     onPressed: () { 
+          //       Navigator.push(context,MaterialPageRoute(builder: (context) => ExamScreen()));
+          //     },
+          //     color: Color(0xFF1A8474),
+          //     child: Text('Adcionar Exame',
+          //       style: TextStyle(  
+          //         color: Colors.white,
+          //         fontSize: 18,
+          //       ),
+          //     ),
+          //   )
+          // )
 
         ],
       ),
