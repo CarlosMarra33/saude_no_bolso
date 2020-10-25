@@ -64,16 +64,10 @@ class FirstAccess1 extends StatelessWidget {
                 children: [
                   TextFormField(
                     autovalidate: true,
-                    validator: (value) {
-                      Pattern pattern =
-                          r'/^\(?(\d{2})\)?(\d{5})[- ]?(\d{4})$/';
-                      RegExp regex = new RegExp(pattern);
-                      if (!regex.hasMatch(value)) {
-                        return 'Enter Valid Phone Number';
-                      } else {
-                        return null;
-                      }
-                    },
+                    validator: (value) =>
+                        value.isEmpty 
+                            ? 'entre com um dado válido'
+                            : null,
 
                     decoration: InputDecoration(
                         // border: OutlineInputBorder(
@@ -92,7 +86,7 @@ class FirstAccess1 extends StatelessWidget {
                   TextFormField(
                     autovalidate: true,
                     validator: (value) =>
-                        value.isEmpty && value.contains(new RegExp(r'[0-9]'))
+                        value.isEmpty 
                             ? 'entre com um dado válido'
                             : null,
                     decoration: InputDecoration(
@@ -135,8 +129,7 @@ class FirstAccess1 extends StatelessWidget {
                     height: 20,
                   ),
                   TextFormField(
-                    validator: (value) => value.isEmpty &&
-                            value.contains(RegExp(r'^[a-zA-Z]+$')) &&
+                    validator: (value) => value.isEmpty &&         
                             value.length != 11
                         ? 'entre com um dado válido'
                         : null,
