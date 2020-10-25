@@ -95,14 +95,22 @@ class _LoginScreenState extends State<LoginScreen>
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        'LOGO',
-                        style: TextStyle(
-                          fontSize: 40,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
+                      Positioned(
+                        top: MediaQuery.of(context).size.height * 3 / 10,
+                        left: MediaQuery.of(context).size.width * 2.7 / 10,
+                        child: Container(
+                          height: MediaQuery.of(context).size.height * 3.5 / 10,
+                          child: Image.asset('assets/com nome.png'),
                         ),
                       )
+                      // Text(
+                      //   'LOGO',
+                      //   style: TextStyle(
+                      //     fontSize: 40,
+                      //     color: Colors.white,
+                      //     fontWeight: FontWeight.bold,
+                      //   ),
+                      // )
                     ],
                   ),
                 ),
@@ -215,7 +223,6 @@ class _LoginScreenState extends State<LoginScreen>
                                 padding: const EdgeInsets.only(top: 20),
                                 child: _buildRaisedButton(),
                               ),
-
                             ],
                           ),
                         )
