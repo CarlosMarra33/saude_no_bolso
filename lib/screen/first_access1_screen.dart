@@ -63,9 +63,24 @@ class FirstAccess1 extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 50,left: 40, right: 40),
+              padding: EdgeInsets.only(top: 20,left: 40, right: 40),
               child: Column(
-                children: [
+                children: [TextFormField(  
+                    
+                    decoration: InputDecoration(
+                      // border: OutlineInputBorder( 
+                      //   borderRadius: BorderRadius.circular(10)
+                      // ),
+                      //hintStyle: ,
+                      filled: true,
+                      fillColor: Colors.white,
+                      border: InputBorder.none,                        
+                      hintText: 'Primeiro Nome'),
+                    //focusNode: focusNodeEmail,
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
                   TextFormField(  
                     
                     decoration: InputDecoration(
@@ -76,7 +91,7 @@ class FirstAccess1 extends StatelessWidget {
                       filled: true,
                       fillColor: Colors.white,
                       border: InputBorder.none,                        
-                      hintText: 'Nome Completo'),
+                      hintText: 'Sobrenome'),
                     //focusNode: focusNodeEmail,
                   ),
                   SizedBox(
