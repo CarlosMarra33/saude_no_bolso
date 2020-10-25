@@ -101,6 +101,14 @@ class CustomDrawer extends StatelessWidget {
             ),
           ),
           Padding(
+            padding: const EdgeInsets.only(top: 5),
+            child: DrawerTile(
+              iconData: Icons.settings,
+              title: 'CONFIGURAÇÃO',
+              pageNumber: 3,
+            ),
+          ),
+          Padding(
             padding: const EdgeInsets.only(top: 35),
             child: DrawerTile(
               iconData: Icons.exit_to_app_rounded,
