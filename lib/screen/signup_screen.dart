@@ -1,8 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:saude_no_bolso/screen/first_access1_screen.dart';
 import 'package:saude_no_bolso/screen/profile_screen.dart';
+import 'package:saude_no_bolso/models/user.dart';
 import 'package:toast/toast.dart';
 
 import 'login_screen.dart';
@@ -21,6 +23,7 @@ class _SignUpScreenState extends State<SignUpScreen>
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
   final TextEditingController _passwordConfirmation = TextEditingController();
+  String accountType;
 
   AnimationController _controller;
   Animation _animation;
@@ -39,19 +42,33 @@ class _SignUpScreenState extends State<SignUpScreen>
     // if (_password == _passwordConfirmation) {
 
     // }
-    UserCredential result = await _auth.createUserWithEmailAndPassword(
-        email: _email.text, password: _password.text);
-    final user = result.user;
-    print(user);
+    try {
+      UserCredential result = await _auth.createUserWithEmailAndPassword(
+          email: _email.text, password: _password.text);
+      final user = result.user;
+      print(user);
+      FirebaseFirestore.instance
+          .collection('users')
+          .add({'email': user.email, 'accountType': accountType});
 
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => FirstAccess1()),
-    );
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => FirstAccess1()),
+      );
 
-    assert(user != null);
-    assert(await user.getIdToken() != null);
-    return user;
+      assert(user != null);
+      assert(await user.getIdToken() != null);
+      return user;
+    } on FirebaseAuthException catch (e) {
+      Toast.show('Conta não encontrada', context,
+          duration: Toast.LENGTH_SHORT, gravity: Toast.TOP);
+
+      if (e.code == 'user-not-found') {
+        print('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        print('Wrong password provided for that user.');
+      }
+    }
   }
 
   @override

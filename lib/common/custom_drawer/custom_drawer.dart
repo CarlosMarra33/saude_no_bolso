@@ -70,7 +70,7 @@ class CustomDrawer extends StatelessWidget {
                 ],
               )),
           Padding(
-            padding: const EdgeInsets.only(top: 20),
+            padding: const EdgeInsets.only(top: 17),
             child: DrawerTile(
               iconData: Icons.person_outline,
               title: 'PERFIL',
@@ -78,7 +78,7 @@ class CustomDrawer extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 5),
+            padding: const EdgeInsets.only(top: 0),
             child: DrawerTile(
               iconData: Icons.folder_open,
               title: 'EXAMES',
@@ -86,7 +86,7 @@ class CustomDrawer extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 5),
+            padding: const EdgeInsets.only(top: 0),
             child: DrawerTile(
               iconData: Icons.qr_code_scanner_outlined,
               title: 'QR',
@@ -94,7 +94,7 @@ class CustomDrawer extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 5),
+            padding: const EdgeInsets.only(top: 0),
             child: DrawerTile(
               iconData: Icons.list_alt,
               title: 'CONSULTAS',
@@ -102,7 +102,7 @@ class CustomDrawer extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 5),
+            padding: const EdgeInsets.only(top: 0),
             child: DrawerTile(
               iconData: Icons.settings,
               title: 'CONFIGURAÇÃO',
@@ -126,7 +126,7 @@ class CustomDrawer extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 135.0, left: 75),
+            padding: const EdgeInsets.only(top: 40.0, left: 75),
             child: Row(
               children: [
                 Text(
