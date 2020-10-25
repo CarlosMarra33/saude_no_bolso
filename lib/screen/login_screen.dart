@@ -1,9 +1,18 @@
+import 'dart:convert';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:saude_no_bolso/models/patient.dart';
 import 'package:saude_no_bolso/screen/profile_screen.dart';
 import 'package:saude_no_bolso/screen/signup_screen.dart';
+import 'package:toast/toast.dart';
+import 'package:saude_no_bolso/globals.dart' as globals;
 
 class LoginScreen extends StatefulWidget {
+  bool isLoginEnabled;
+
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
@@ -13,96 +22,58 @@ class _LoginScreenState extends State<LoginScreen>
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
 
-  AnimationController _controller;
-  AnimationController controllerEmail;
-  AnimationController controllerPassword;
+  bool emailValidator = false;
+  bool passwordValidator = false;
 
-  Animation _animation;
-  Animation animationEmail;
-  Animation animationPassword;
-
-  FocusNode focusNodeEmail = FocusNode();
-  FocusNode focusNodePassword = FocusNode();
-  FocusNode _focusNode = FocusNode();
-
-  @override
-  void initState() {
-    super.initState();
-
-    _controller =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 300));
-    _animation = Tween(begin: 200.0, end: 0.0).animate(_controller)
-      ..addListener(() {
-        setState(() {});
-      });
-
-    _focusNode.addListener(() {
-      if (_focusNode.hasFocus) {
-        _controller.forward();
-      } else {
-        _controller.reverse();
-      }
-    });
+  showToast(String phrase) {
+    Toast.show(phrase, context,
+        duration: Toast.LENGTH_SHORT, gravity: Toast.TOP);
   }
 
-  //   controllerEmail =
-  //       AnimationController(vsync: this, duration: Duration(milliseconds: 300));
-  //   animationEmail = Tween(begin: 200.0, end: 0.0).animate(controllerEmail)
-  //     ..addListener(() {
-  //       setState(() {});
-  //     });
-
-  //   focusNodeEmail.addListener(() {
-  //     if (focusNodeEmail.hasFocus) {
-  //       controllerEmail.forward();
-  //     } else {
-  //       controllerEmail.reverse();
-  //     }
-  //   });
-
-  //   controllerPassword =
-  //       AnimationController(vsync: this, duration: Duration(milliseconds: 300));
-  //   animationPassword =
-  //       Tween(begin: 150.0, end: 0.0).animate(controllerPassword)
-  //         ..addListener(() {
-  //           setState(() {});
-  //         });
-
-  //   focusNodePassword.addListener(() {
-  //     if (focusNodePassword.hasFocus) {
-  //       controllerPassword.forward();
-  //     } else {
-  //       controllerPassword.reverse();
-  //     }
-  //   });
-  //
+  loginButton() {
+    if (widget.isLoginEnabled == true) {
+      loginUser();
+    } else {}
+  }
 
   loginUser() async {
     try {
       UserCredential userCredential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(
-              email: "teste@gmail.com", password: "123456");
-      print('LEONCIO');
+              email: _email.text,
+              password: _password
+                  .text); //email: _email.text, password: _password.text);
       print(userCredential.user.email);
+
+      var patient = await FirebaseFirestore.instance
+          .collection('patients')
+          .where('email', isEqualTo: userCredential.user.email)
+          .get()
+          .then((value) => {
+                // value.docs.forEach((result) {
+                //   print(result.data());
+
+                // })
+
+                globals.patient = Patient.fromSnapshot(value.docs.first)
+              });
+      //print(patient.toString());
+      //globals.patient.email = userCredential.user.email;
+      print(globals.patient.email);
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => ProfileScreen()),
+      );
     } on FirebaseAuthException catch (e) {
+      showToast('Conta não encontrada');
       if (e.code == 'user-not-found') {
         print('No user found for that email.');
       } else if (e.code == 'wrong-password') {
         print('Wrong password provided for that user.');
       }
     }
-  }
-
-  @override
-  void dispose() {
-    // controllerPassword.dispose();
-    // controllerEmail.dispose();
-    _controller.dispose();
-    // focusNodePassword.dispose();
-    // focusNodeEmail.dispose();
-    _focusNode.dispose();
-
-    super.dispose();
+    return null;
   }
 
   @override
@@ -121,16 +92,13 @@ class _LoginScreenState extends State<LoginScreen>
               child: Column(
                 children: [
                   InkWell(
-                    // to dismiss the keyboard when the user tabs out of the TextField
                     splashColor: Colors.transparent,
                     onTap: () {
                       FocusScope.of(context).requestFocus(FocusNode());
                     },
                     child: Container(
-                      //padding: const EdgeInsets.all(20.0),
                       child: Column(
                         children: <Widget>[
-                          SizedBox(height: _animation.value),
                           Padding(
                             padding: EdgeInsets.all(27),
                             child: Image.network(
@@ -142,57 +110,59 @@ class _LoginScreenState extends State<LoginScreen>
                             padding: EdgeInsets.only(left: 60, right: 60),
                             child: Column(
                               children: [
-                                TextFormField(
-                                  controller: _email,
-                                  decoration: InputDecoration(
-                                      //hintStyle: ,
-                                      filled: true,
-                                      fillColor: Colors.green[100],
-                                      border: InputBorder.none,
-                                      icon: Icon(Icons.email),
-                                      hintText: 'Email'),
-                                  //focusNode: focusNodeEmail,
+                                Form(
+                                  //onChanged: () => enabledLoginButton('email'),
+                                  autovalidate: true,
+                                  child: TextFormField(
+                                    validator: (value) =>
+                                        EmailValidator.validate(value)
+                                            ? null
+                                            : "Entre com um email válido",
+                                    controller: _email,
+                                    decoration: InputDecoration(
+                                        //hintStyle: ,
+                                        filled: true,
+                                        fillColor: Colors.green[100],
+                                        border: InputBorder.none,
+                                        icon: Icon(Icons.email),
+                                        hintText: 'Email'),
+                                    //focusNode: focusNodeEmail,
+                                  ),
                                 ),
                                 SizedBox(
                                   height: 5,
                                 ),
-                                TextFormField(
-                                  controller: _password,
-                                  decoration: InputDecoration(
-                                      filled: true,
-                                      fillColor: Colors.green[100],
-                                      border: InputBorder.none,
-                                      icon: Icon(Icons.lock),
-                                      hintText: 'Senha'),
-                                  focusNode: _focusNode,
-                                ),
+                                Form(
+                                  onChanged: () {
+                                    _password.text.toString().length > 5
+                                        ? passwordValidator = true
+                                        : null;
+                                  },
+                                  autovalidate: true,
+                                  child: TextFormField(
+                                    validator: (value) => value
+                                                    .toString()
+                                                    .length >
+                                                5 &&
+                                            value.toString().length < 16
+                                        ? null
+                                        : "Necessária senha entre 6 e 15 dígitos",
+                                    controller: _password,
+                                    decoration: InputDecoration(
+                                        filled: true,
+                                        fillColor: Colors.green[100],
+                                        border: InputBorder.none,
+                                        icon: Icon(Icons.lock),
+                                        hintText: 'Senha'),
+                                  ),
+                                )
                               ],
                             ),
                           ),
                           SizedBox(
                             height: 50,
                           ),
-                          RaisedButton(
-                            onPressed: () {
-                              loginUser();
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ProfileScreen()),
-                              );
-                            },
-                            disabledColor: Colors.grey[200],
-                            color: Colors.green,
-                            textColor: Colors.white,
-                            disabledTextColor: Colors.grey[350],
-                            elevation: 10,
-                            child: Text(
-                              'Entrar',
-                              style: TextStyle(fontSize: 17),
-                            ),
-                            padding: EdgeInsets.only(
-                                top: 10, bottom: 10, left: 70, right: 70),
-                          ),
+                          _buildRaisedButton(),
                           SizedBox(
                             height: 30,
                           ),
@@ -218,5 +188,34 @@ class _LoginScreenState extends State<LoginScreen>
             ),
           ),
         ));
+  }
+
+  Widget _buildRaisedButton() {
+    bool isEnabled;
+    if (widget.isLoginEnabled == null || widget.isLoginEnabled == false) {
+      isEnabled = false;
+    } else {
+      isEnabled = widget.isLoginEnabled;
+    }
+
+    return RaisedButton(
+      onPressed: () {
+        if (isEnabled != null) {
+          print(isEnabled == true);
+          if (EmailValidator.validate(_email.text) &&
+              passwordValidator == true) {
+            loginUser();
+          }
+        }
+      },
+      color: Colors.green,
+      textColor: Colors.white,
+      elevation: 10,
+      child: Text(
+        'Entrar',
+        style: TextStyle(fontSize: 17),
+      ),
+      padding: EdgeInsets.only(top: 10, bottom: 10, left: 70, right: 70),
+    );
   }
 }
