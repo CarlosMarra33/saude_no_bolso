@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:saude_no_bolso/models/patient.dart';
 
 class UserAccount {
@@ -8,4 +9,8 @@ class UserAccount {
     this.email = email;
     this.accountType = accountType;
   }
+
+  UserAccount.fromSnapshot(DocumentSnapshot snapshot)
+      : email = snapshot['email'],
+        accountType = snapshot['accountType'];
 }

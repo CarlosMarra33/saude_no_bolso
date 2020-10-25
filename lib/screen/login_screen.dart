@@ -5,6 +5,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:saude_no_bolso/models/patient.dart';
+import 'package:saude_no_bolso/models/user.dart';
 import 'package:saude_no_bolso/screen/profile_screen.dart';
 import 'package:saude_no_bolso/screen/signup_screen.dart';
 import 'package:toast/toast.dart';
@@ -57,6 +58,20 @@ class _LoginScreenState extends State<LoginScreen>
 
                 globals.patient = Patient.fromSnapshot(value.docs.first)
               });
+
+      var user = await FirebaseFirestore.instance
+          .collection('users')
+          .where('email', isEqualTo: userCredential.user.email)
+          .get()
+          .then((value) => {
+                // value.docs.forEach((result) {
+                //   print(result.data());
+
+                // })
+
+                globals.user = UserAccount.fromSnapshot(value.docs.first)
+              });
+
       //print(patient.toString());
       //globals.patient.email = userCredential.user.email;
       print(globals.patient.email);

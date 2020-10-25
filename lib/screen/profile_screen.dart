@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:saude_no_bolso/common/custom_drawer/custom_drawer.dart';
 import 'package:saude_no_bolso/globals.dart' as globals;
 
+import 'exam_screen.dart';
 import 'exams_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -273,7 +274,7 @@ class ProfileScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10)),
                 onPressed: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => ExamsScreen()));
+                      MaterialPageRoute(builder: (context) => ExamScreen()));
                 },
                 color: Color(0xFF1A8474),
                 child: Text(

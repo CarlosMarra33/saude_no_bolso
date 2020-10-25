@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:saude_no_bolso/common/custom_drawer/custom_drawer.dart';
-import 'package:saude_no_bolso/screen/chat_screen.dart';
 
-class Chats extends StatelessWidget {
+import 'doctor_profile_screen.dart';
+
+class PatientsScreen extends StatefulWidget {
+  @override
+  _PatientsScreenState createState() => _PatientsScreenState();
+}
+
+class _PatientsScreenState extends State<PatientsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -125,7 +131,8 @@ class Chats extends StatelessWidget {
               onTap: () => {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ChatScreen()),
+                  MaterialPageRoute(
+                      builder: (context) => DoctorProfileScreen()),
                 )
               },
             );

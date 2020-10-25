@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import 'drawer_tile.dart';
@@ -12,16 +13,14 @@ class CustomDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Drawer(
       child: ListView(
+        dragStartBehavior: DragStartBehavior.start,
         children: [
           Container(
+              padding: EdgeInsets.only(top: 30),
               //color: Color.fromRGBO(1A8474),
               height: 250,
               color: Color(0xFF1A8474),
-              padding: const EdgeInsets.only(
-                top: 40,
-                left: 0.0,
-              ),
-              //alignment: Alignment.center,
+              alignment: Alignment.center,
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -70,7 +69,7 @@ class CustomDrawer extends StatelessWidget {
                 ],
               )),
           Padding(
-            padding: const EdgeInsets.only(top: 17),
+            padding: const EdgeInsets.only(top: 15),
             child: DrawerTile(
               iconData: Icons.person_outline,
               title: 'PERFIL',
@@ -110,7 +109,7 @@ class CustomDrawer extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 5),
+            padding: const EdgeInsets.only(top: 0),
             child: DrawerTile(
               iconData: Icons.chat,
               title: 'CHAT',
@@ -118,28 +117,28 @@ class CustomDrawer extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 35),
+            padding: const EdgeInsets.only(top: 0),
             child: DrawerTile(
               iconData: Icons.exit_to_app_rounded,
               title: 'LOGOUT',
               pageNumber: 5,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(top: 40.0, left: 75),
-            child: Row(
-              children: [
-                Text(
-                  'Saúde no bolso',
-                  style: TextStyle(
-                    color: Color(0xFF1A8474),
-                    fontWeight: FontWeight.bold,
-                    fontSize: 22,
-                  ),
-                ),
-              ],
-            ),
-          ),
+          // Padding(
+          //   padding: const EdgeInsets.only(top: 40.0, left: 75),
+          //   child: Row(
+          //     children: [
+          //       Text(
+          //         'Saúde no bolso',
+          //         style: TextStyle(
+          //           color: Color(0xFF1A8474),
+          //           fontWeight: FontWeight.bold,
+          //           fontSize: 22,
+          //         ),
+          //       ),
+          //     ],
+          //   ),
+          // ),
         ],
       ),
     );
