@@ -28,17 +28,16 @@ class CustomDrawer extends StatelessWidget {
                 children: [
                   Container(
                     decoration: BoxDecoration(
-                      color: Colors.white,
-                      shape: BoxShape.circle, 
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 4.0, 
-                          color: Color.fromARGB(100, 0, 0, 0), 
-                          spreadRadius: 5,
-                          offset: Offset(4.8, 4.8),
-                        )
-                      ]
-                    ),
+                        color: Colors.white,
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 4.0,
+                            color: Color.fromARGB(100, 0, 0, 0),
+                            spreadRadius: 5,
+                            offset: Offset(4.8, 4.8),
+                          )
+                        ]),
                     child: CircleAvatar(
                         radius: (75),
                         backgroundColor: Colors.transparent,
@@ -125,7 +124,7 @@ class CustomDrawer extends StatelessWidget {
                 Text(
                   'Saúde no bolso',
                   style: TextStyle(
-                   color: Color(0xFF1A8474),
+                    color: Color(0xFF1A8474),
                     fontWeight: FontWeight.bold,
                     fontSize: 22,
                   ),

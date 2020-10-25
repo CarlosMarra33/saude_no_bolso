@@ -1,12 +1,17 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:saude_no_bolso/screen/first_access1_screen.dart';
 import 'package:saude_no_bolso/screen/profile_screen.dart';
+import 'package:toast/toast.dart';
 
 import 'login_screen.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
 class SignUpScreen extends StatefulWidget {
+  bool isSignUpEnabled;
+
   @override
   _SignUpScreenState createState() => _SignUpScreenState();
 }
@@ -20,26 +25,14 @@ class _SignUpScreenState extends State<SignUpScreen>
   AnimationController _controller;
   Animation _animation;
 
+  bool passwordValidator = false;
+  bool passwordConfirmationValidator = false;
+
   FocusNode _focusNode = FocusNode();
 
   @override
   void initState() {
     super.initState();
-
-    _controller =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 300));
-    _animation = Tween(begin: 0.0, end: 0.0).animate(_controller)
-      ..addListener(() {
-        setState(() {});
-      });
-
-    _focusNode.addListener(() {
-      if (_focusNode.hasFocus) {
-        _controller.forward();
-      } else {
-        _controller.reverse();
-      }
-    });
   }
 
   Future signUp(email, password) async {
@@ -51,17 +44,14 @@ class _SignUpScreenState extends State<SignUpScreen>
     final user = result.user;
     print(user);
 
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => FirstAccess1()),
+    );
+
     assert(user != null);
     assert(await user.getIdToken() != null);
     return user;
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    _focusNode.dispose();
-
-    super.dispose();
   }
 
   @override
@@ -109,69 +99,66 @@ class _SignUpScreenState extends State<SignUpScreen>
                                   padding: EdgeInsets.only(left: 60, right: 60),
                                   child: Column(
                                     children: [
-                                      TextFormField(
-                                        controller: _email,
-                                        decoration: InputDecoration(
-                                            //hintStyle: ,
-                                            filled: true,
-                                            fillColor: Colors.green[100],
-                                            border: InputBorder.none,
-                                            icon: Icon(Icons.email),
-                                            hintText: 'Email'),
+                                      Form(
+                                        autovalidate: true,
+                                        child: TextFormField(
+                                          controller: _email,
+                                          validator: (value) =>
+                                              EmailValidator.validate(value)
+                                                  ? null
+                                                  : "Entre com um email válido",
+                                          decoration: InputDecoration(
+                                              //hintStyle: ,
+                                              filled: true,
+                                              fillColor: Colors.green[100],
+                                              border: InputBorder.none,
+                                              icon: Icon(Icons.email),
+                                              hintText: 'Email'),
+                                        ),
                                       ),
                                       SizedBox(
                                         height: 5,
                                       ),
-                                      TextFormField(
-                                        controller: _password,
-                                        decoration: InputDecoration(
-                                            filled: true,
-                                            fillColor: Colors.green[100],
-                                            border: InputBorder.none,
-                                            icon: Icon(Icons.lock),
-                                            hintText: 'Senha'),
-                                        //focusNode: _focusNode,
+                                      Form(
+                                        onChanged: () {
+                                          _password.text.toString().length >
+                                                      5 &&
+                                                  _password.text
+                                                          .toString()
+                                                          .length <
+                                                      16
+                                              ? passwordValidator = true
+                                              : passwordValidator = false;
+                                        },
+                                        autovalidate: true,
+                                        child: TextFormField(
+                                          validator: (value) => value
+                                                          .toString()
+                                                          .length >
+                                                      5 &&
+                                                  value.toString().length < 16
+                                              ? null
+                                              : "Necessária senha entre 6 e 15 dígitos",
+                                          controller: _password,
+                                          decoration: InputDecoration(
+                                              filled: true,
+                                              fillColor: Colors.green[100],
+                                              border: InputBorder.none,
+                                              icon: Icon(Icons.lock),
+                                              hintText: 'Senha'),
+                                          //focusNode: _focusNode,
+                                        ),
                                       ),
                                       SizedBox(
                                         height: 5,
-                                      ),
-                                      TextFormField(
-                                        controller: _passwordConfirmation,
-                                        decoration: InputDecoration(
-                                            filled: true,
-                                            fillColor: Colors.green[100],
-                                            border: InputBorder.none,
-                                            icon: Icon(Icons.lock_open),
-                                            hintText: 'Confirme a Senha'),
-                                        //focusNode: _focusNode,
-                                      ),
+                                      )
                                     ],
                                   ),
                                 ),
                                 SizedBox(
                                   height: 30,
                                 ),
-                                RaisedButton(
-                                  onPressed: () {
-                                    signUp(_email, _password);
-                                    // Navigator.push(
-                                    //   context,
-                                    //   MaterialPageRoute(
-                                    //       builder: (context) => LoginScreen()),
-                                    // );
-                                  },
-                                  disabledColor: Colors.grey[200],
-                                  color: Colors.green,
-                                  textColor: Colors.white,
-                                  disabledTextColor: Colors.grey[350],
-                                  elevation: 10,
-                                  child: Text(
-                                    'Cadastrar-se',
-                                    style: TextStyle(fontSize: 17),
-                                  ),
-                                  padding: EdgeInsets.only(
-                                      top: 10, bottom: 10, left: 70, right: 70),
-                                ),
+                                _buildSignUpButton()
                               ],
                             ),
                           ),
@@ -184,5 +171,46 @@ class _SignUpScreenState extends State<SignUpScreen>
             ),
           ),
         ));
+  }
+
+  Widget _buildSignUpButton() {
+    bool isEnabled;
+    if (widget.isSignUpEnabled == null || widget.isSignUpEnabled == false) {
+      isEnabled = false;
+    } else {
+      isEnabled = widget.isSignUpEnabled;
+    }
+    return RaisedButton(
+      onPressed: () {
+        if (isEnabled != null) {
+          print(isEnabled == true);
+          print(EmailValidator.validate(_email.text));
+          print(passwordValidator == true);
+          if (EmailValidator.validate(_email.text) &&
+              (passwordValidator == true)) {
+            signUp(_email, _password);
+          } else {
+            Toast.show('Email Inválido ou as senhas não batem', context,
+                duration: Toast.LENGTH_SHORT, gravity: Toast.TOP);
+          }
+        }
+
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(
+        //       builder: (context) => LoginScreen()),
+        // );
+      },
+      disabledColor: Colors.grey[200],
+      color: Colors.green,
+      textColor: Colors.white,
+      disabledTextColor: Colors.grey[350],
+      elevation: 10,
+      child: Text(
+        'Cadastrar-se',
+        style: TextStyle(fontSize: 17),
+      ),
+      padding: EdgeInsets.only(top: 10, bottom: 10, left: 70, right: 70),
+    );
   }
 }
