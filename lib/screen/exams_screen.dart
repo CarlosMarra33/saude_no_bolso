@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:saude_no_bolso/common/custom_drawer/custom_drawer.dart';
 
 import 'appointment_screen.dart';
+import 'exam_screen.dart';
 
 class ExamsScreen extends StatelessWidget {
   @override
@@ -14,7 +15,7 @@ class ExamsScreen extends StatelessWidget {
         backgroundColor: Color.fromRGBO(26, 132, 116, 1),
         elevation: 0,
         title: Text(
-          "Consultas",
+          "Exames",
           style: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 22,
@@ -48,7 +49,7 @@ class ExamsScreen extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 5),
                                   child: Text(
-                                    'Cayo Cesar',
+                                    'Glicemia Jejum',
                                     style: TextStyle(
                                       fontSize: 18,
                                       color: Color(0xFF1A8474),
@@ -64,20 +65,6 @@ class ExamsScreen extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Padding(
-                                      padding: const EdgeInsets.only(top: 10),
-                                      child: CircleAvatar(
-                                          radius: (42),
-                                          backgroundColor: Colors.transparent,
-                                          child: ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(50),
-                                            child: Image.network(
-                                              'https://media-exp1.licdn.com/dms/image/C4E03AQFilx6AuyC21g/profile-displayphoto-shrink_200_200/0?e=1608768000&v=beta&t=1Ml1vbPq6tgtndGlOxVxpBIAhH4bjFrJyIF1MC9Mnns',
-                                              height: 170,
-                                            ),
-                                          )),
-                                    ),
-                                    Padding(
                                       padding: const EdgeInsets.only(
                                           top: 10, left: 20),
                                       child: Column(
@@ -87,11 +74,11 @@ class ExamsScreen extends StatelessWidget {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            'Ortopedista',
+                                            '80 mg/dL',
                                             style: TextStyle(
                                               color: Color(0xFF1A8474),
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 20,
+                                              fontSize: 23,
                                             ),
                                           ),
                                           Padding(
@@ -106,44 +93,21 @@ class ExamsScreen extends StatelessWidget {
                                               ),
                                             ),
                                           ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                top: 10.0),
+                                            child: Text(
+                                              'Saudável',
+                                              style: TextStyle(
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Color(0xFF005080)),
+                                            ),
+                                          )
                                         ],
                                       ),
                                     ),
                                   ],
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 15),
-                                  child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'CRM: 3711',
-                                        style: TextStyle(
-                                          color: Color(0xFF6A6180),
-                                          fontSize: 17,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 10),
-                                  child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'Horário: Das 8h às 18h',
-                                        style: TextStyle(
-                                          color: Color(0xFF6A6180),
-                                          fontSize: 17,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(top: 15),
@@ -163,11 +127,11 @@ class ExamsScreen extends StatelessWidget {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    AppointmentScreen()));
+                                                    ExamScreen()));
                                       },
                                       color: Color(0xFF1A8474),
                                       child: Text(
-                                        'Visualizar',
+                                        'Editar',
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontSize: 18,

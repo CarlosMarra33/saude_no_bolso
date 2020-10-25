@@ -234,7 +234,7 @@ class ProfileScreen extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        'Tipo songuineo',
+                        'Tipo sanguíneo',
                         style: TextStyle(
                           color: Colors.grey[600],
                           fontSize: 15,
@@ -283,7 +283,40 @@ class ProfileScreen extends StatelessWidget {
                     fontSize: 18,
                   ),
                 ),
-              ))
+              )),
+          Positioned(
+              top: MediaQuery.of(context).size.height * 1.4 / 10,
+              left: MediaQuery.of(context).size.width * 0.5 / 10,
+              width: MediaQuery.of(context).size.width * 9 / 10,
+              height: MediaQuery.of(context).size.height * 0.6 / 10,
+              child: Container(
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)),
+                ),
+              )),
+          Positioned(
+              top: MediaQuery.of(context).size.height * 1.4 / 10,
+              left: MediaQuery.of(context).size.width * 0.5 / 10,
+              width: MediaQuery.of(context).size.width * 4 / 10,
+              height: MediaQuery.of(context).size.height * 0.6 / 10,
+              child: Container(
+                child: Card(
+                  color: Colors.green,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)),
+                ),
+              )),
+          Positioned(
+              top: MediaQuery.of(context).size.height * 1.53 / 10,
+              left: MediaQuery.of(context).size.width * 4 / 10,
+              width: MediaQuery.of(context).size.width * 4 / 10,
+              height: MediaQuery.of(context).size.height * 0.6 / 10,
+              child: Container(
+                  child: Text(
+                'Level 40',
+                style: TextStyle(fontSize: 20),
+              ))),
         ],
       ),
     );
