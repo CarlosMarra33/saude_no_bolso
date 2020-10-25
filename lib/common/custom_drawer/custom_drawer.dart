@@ -1,6 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'drawer_tile.dart';
+
+final FirebaseAuth _auth = FirebaseAuth.instance;
 
 class CustomDrawer extends StatelessWidget {
   @override
@@ -9,6 +12,7 @@ class CustomDrawer extends StatelessWidget {
       child: ListView(
         children: [
           Container(
+              //color: Color.fromRGBO(1A8474),
               height: 250,
               //alignment: Alignment.center,
               child: Column(
@@ -47,6 +51,9 @@ class CustomDrawer extends StatelessWidget {
             iconData: Icons.pages,
             title: 'Consultas',
             pageNumber: 3,
+          ),
+          SizedBox(
+            height: 30,
           ),
           DrawerTile(
             iconData: Icons.exit_to_app,
