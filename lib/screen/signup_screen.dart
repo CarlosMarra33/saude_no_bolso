@@ -43,8 +43,11 @@ class _SignUpScreenState extends State<SignUpScreen>
   }
 
   Future signUp(email, password) async {
+    // if (_password == _passwordConfirmation) {
+
+    // }
     UserCredential result = await _auth.createUserWithEmailAndPassword(
-        email: 'teste@gmail.com', password: '123456');
+        email: _email.text, password: _password.text);
     final user = result.user;
     print(user);
 
