@@ -12,27 +12,86 @@ class QrCodeScreen extends StatelessWidget {
       gapless: false,
     );
     return Scaffold(
-      extendBodyBehindAppBar: true,
+      extendBodyBehindAppBar: false,
       drawer: CustomDrawer(),
       appBar: AppBar(
-        backgroundColor: Color(0x44000000),
+        titleSpacing: MediaQuery.of(context).size.width * 2.8/10,
+        backgroundColor:Color.fromRGBO(26, 132, 116, 1),
         elevation: 0,
-        title: Text("QR Code"),
+        title: Text("QR Code"),  
       ),
-      
-body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            QrImage(
-              data: '1234455',
-              gapless: true,
-              size: 250,
-              errorCorrectionLevel: QrErrorCorrectLevel.H,
-            )
+      body: Stack(
+        children: [
+          Container(
+        color: Color(0xFF1A8474),
+        child: Column(          
+          children: [            
+            Container(   
+              padding: const EdgeInsets.only(top: 0.0, left:30,),
+              alignment: Alignment.topLeft, 
+              color: Color(0xFF1A8474),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+              ),
+            ),            
           ],
         ),
       ),
-    );    
+      Positioned(
+        left:MediaQuery.of(context).size.width / 30,
+        top: MediaQuery.of(context).size.height / 13.5,
+        height: MediaQuery.of(context).size.height * 7/10,
+        width: MediaQuery.of(context).size.width * 9.35/10,
+        child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+          elevation: 10,
+          child: Padding(padding: EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,              
+              children: [
+              Padding(
+                padding: const EdgeInsets.only(left: 5),
+                child: Text('Escanear código',
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Color(0xFF1A8474),
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              Divider(
+                color: Color(0xFF1A8474),
+                thickness: 3,
+              ),
+              Text('Aponte a câmera do seu celular para o QR Code',
+                style: TextStyle(
+                  color: Colors.grey[600],
+                  fontSize: 16,
+                ),
+              ),
+              Container(
+                height: MediaQuery.of(context).size.height / 2,
+                width: MediaQuery.of(context).size.width / 1,
+                alignment: Alignment.center,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 0),
+                  child: QrImage(
+                    data: '1234455',
+                    
+                    gapless: true,
+                    size: 250,
+                    errorCorrectionLevel: QrErrorCorrectLevel.H,
+                  ),
+                ),
+              )   
+            ],
+          ),
+          ),
+        ))
+        ],
+      ),
+    );
   }
 }
