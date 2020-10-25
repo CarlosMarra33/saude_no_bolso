@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:saude_no_bolso/common/custom_drawer/custom_drawer.dart';
+import 'package:saude_no_bolso/globals.dart' as globals;
 
 import 'exam_screen.dart';
 
@@ -55,7 +56,7 @@ class ProfileScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Cayo Cesar',
+                              '${globals.patient.firstName}',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
@@ -145,7 +146,7 @@ class ProfileScreen extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.all(5.0),
                             child: Text(
-                              'Matheus@gmail.com',
+                              '${globals.patient.email}',
                               style: TextStyle(
                                   color: Color(0xFF6A6180),
                                   fontWeight: FontWeight.bold),
@@ -171,7 +172,7 @@ class ProfileScreen extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.all(5.0),
                             child: Text(
-                              '24/10/2020',
+                              '${globals.patient.birthdate}',
                               style: TextStyle(
                                 color: Color(0xFF6A6180),
                                 fontWeight: FontWeight.bold),
@@ -197,7 +198,7 @@ class ProfileScreen extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.all(5.0),
                             child: Text(
-                              '2222222',
+                              '${globals.patient.phone}',
                               style: TextStyle(
                                   color: Color(0xFF6A6180),
                                   fontWeight: FontWeight.bold),
@@ -223,7 +224,7 @@ class ProfileScreen extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.all(5.0),
                             child: Text(
-                              '22222222',
+                              '${globals.patient.emergencyPhone}',
                               style: TextStyle(
                                   color: Color(0xFF6A6180),
                                   fontWeight: FontWeight.bold),
@@ -249,7 +250,7 @@ class ProfileScreen extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.all(5.0),
                             child: Text(
-                              'A+',
+                              '${globals.patient.bloodType}',
                               style: TextStyle(
                                   color: Color(0xFF6A6180),
                                   fontWeight: FontWeight.bold),

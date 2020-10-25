@@ -10,6 +10,7 @@ class Patient {
   String emergencyPhone;
   String address;
   String email;
+  String birthdate;
 
   Patient(
       String firstName,
@@ -20,7 +21,8 @@ class Patient {
       String phone,
       String emergencyPhone,
       String address,
-      String email) {
+      String email,
+      String birthdate) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.bloodType = bloodType;
@@ -30,6 +32,7 @@ class Patient {
     this.emergencyPhone = emergencyPhone;
     this.address = address;
     this.email = email;
+    this.birthdate = birthdate;
   }
 
   Patient.fromSnapshot(DocumentSnapshot snapshot)
@@ -41,5 +44,6 @@ class Patient {
         gender = snapshot['gender'],
         phone = snapshot['phone'],
         emergencyPhone = snapshot['emergencyPhone'],
-        address = snapshot['address'];
+        address = snapshot['address'],
+        birthdate = snapshot['birthdate'];
 }
