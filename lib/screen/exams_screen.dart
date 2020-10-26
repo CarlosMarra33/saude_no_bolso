@@ -143,13 +143,14 @@ class ExamsScreen extends StatelessWidget {
                               ],
                             ),
                           ),
-                        )
+                        ),
                         // Text(
                         //   //list[index].toString(),
                         //   'Note Title',
                         //   style: TextStyle(
                         //       fontSize: 22, fontWeight: FontWeight.bold),
                         // ),
+                        Container()
                       ]),
                 ),
                 onTap: () => {},
