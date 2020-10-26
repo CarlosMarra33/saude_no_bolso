@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:splashscreen/splashscreen.dart';
 
 import 'base_screen.dart';
+import 'login_screen.dart';
 
 class SplashScreenPage extends StatefulWidget {
   @override
@@ -16,7 +17,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
         SplashScreen(
           seconds: 5,
           backgroundColor: Color(0xFF1A8474),
-          navigateAfterSeconds: BaseScreen(),
+          navigateAfterSeconds: LoginScreen(),
           loaderColor: Colors.transparent,
         ),
         Positioned(

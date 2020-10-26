@@ -15,154 +15,162 @@ class _FirstAccess2State extends State<FirstAccess2> {
   bool isDoctor = false;
   @override
   Widget build(BuildContext context) {
+    final bottom = MediaQuery.of(context).viewInsets.bottom;
     return Scaffold(
-      extendBodyBehindAppBar: false,
-      // drawer:  SvgPicture.asset('assets/Voltar.svg'),
-      appBar: AppBar(
-        titleSpacing: MediaQuery.of(context).size.width * 2.6 / 10,
-        leading: Builder(
-          builder: (BuildContext context) {
-            return IconButton(
-                icon: Icon(
-                  Icons.arrow_back_ios,
-                  color: Color(0xFF1A8474),
-                ),
-                onPressed: () {
-                  Navigator.pop(context);
-                });
-          },
+        resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomPadding: false,
+        extendBodyBehindAppBar: false,
+        // drawer:  SvgPicture.asset('assets/Voltar.svg'),
+        appBar: AppBar(
+          titleSpacing: MediaQuery.of(context).size.width * 2.6 / 10,
+          leading: Builder(
+            builder: (BuildContext context) {
+              return IconButton(
+                  icon: Icon(
+                    Icons.arrow_back_ios,
+                    color: Color(0xFF1A8474),
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  });
+            },
+          ),
+          backgroundColor: Color(0xFFF0F0F7),
+          elevation: 0,
+          title: Text(
+            "Olá, Cayo",
+            style: TextStyle(color: Color(0xFF1A8474)),
+          ),
         ),
-        backgroundColor: Color(0xFFF0F0F7),
-        elevation: 0,
-        title: Text(
-          "Olá, Cayo",
-          style: TextStyle(color: Color(0xFF1A8474)),
-        ),
-      ),
-      body: Container(
-        color: Color(0xFFF0F0F7),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SizedBox(
-              height: 20,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 40),
-              child: Text(
-                'Continue \no seu cadastro',
-                textAlign: TextAlign.start,
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
+        body: SingleChildScrollView(
+          padding: EdgeInsets.only(bottom: bottom),
+          child: Container(
+            color: Color(0xFFF0F0F7),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 20,
                 ),
-              ),
-            ),
-            Container(
-              padding: const EdgeInsets.only(top: 20, left: 40),
-              width: MediaQuery.of(context).size.width * 5.6 / 10,
-              child: Text('Matheus, prescisamos saber um pouco mais de voçê :)',
-                  style: TextStyle(fontSize: 14, color: Colors.grey[600]
-                      // fontWeight: FontWeight.bold,
-                      )),
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 50, left: 40, right: 40),
-              child: Column(
-                children: [
-                  TextFormField(
-                    validator: (value) =>
-                        value.isEmpty ? 'entre com um dado válido' : null,
-                    decoration: InputDecoration(
-                        // border: OutlineInputBorder(
-                        //   borderRadius: BorderRadius.circular(10)
-                        // ),
-                        //hintStyle: ,
-                        filled: true,
-                        fillColor: Colors.white,
-                        border: InputBorder.none,
-                        hintText: 'Endereço'),
-                    //focusNode: focusNodeEmail,
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    validator: (value) => value.isEmpty && value.length != 11
-                        ? 'entre com um dado válido'
-                        : null,
-                    decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Colors.white,
-                        border: InputBorder.none,
-                        hintText: 'Número de Emergência'),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  isDoctor ? crmInput() : bloodType(),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    width: MediaQuery.of(context).size.width * 8 / 10,
-                    height: MediaQuery.of(context).size.height * 0.7 / 10,
-                    color: Colors.white,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 110),
-                      child: DropdownButton(
-                          value: widget._value,
-                          items: [
-                            DropdownMenuItem(
-                              child: Text("Feminino"),
-                              value: 1,
-                            ),
-                            DropdownMenuItem(
-                              child: Text("Masculino"),
-                              value: 2,
-                            ),
-                          ],
-                          onChanged: (value) {
-                            setState(() {
-                              widget._value = value;
-                              print(widget._value);
-                            });
-                          }),
+                Padding(
+                  padding: const EdgeInsets.only(left: 40),
+                  child: Text(
+                    'Continue \no seu cadastro',
+                    textAlign: TextAlign.start,
+                    style: TextStyle(
+                      fontSize: 28,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(
-                    height: 55,
-                  ),
-                  Container(
-                    width: MediaQuery.of(context).size.width * 8 / 10,
-                    height: MediaQuery.of(context).size.height * 0.8 / 10,
-                    // alignment: Alignment.bottomCenter,
-                    child: RaisedButton(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8)),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => SignUpConfirmation()));
-                      },
-                      color: Color(0xFF1A8474),
-                      child: Text(
-                        'Finalizar Login',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
+                ),
+                Container(
+                  padding: const EdgeInsets.only(top: 20, left: 40),
+                  width: MediaQuery.of(context).size.width * 5.6 / 10,
+                  child: Text(
+                      'Matheus, prescisamos saber um pouco mais de voçê :)',
+                      style: TextStyle(fontSize: 14, color: Colors.grey[600]
+                          // fontWeight: FontWeight.bold,
+                          )),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 50, left: 40, right: 40),
+                  child: Column(
+                    children: [
+                      TextFormField(
+                        validator: (value) =>
+                            value.isEmpty ? 'entre com um dado válido' : null,
+                        decoration: InputDecoration(
+                            // border: OutlineInputBorder(
+                            //   borderRadius: BorderRadius.circular(10)
+                            // ),
+                            //hintStyle: ,
+                            filled: true,
+                            fillColor: Colors.white,
+                            border: InputBorder.none,
+                            hintText: 'Endereço'),
+                        //focusNode: focusNodeEmail,
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      TextFormField(
+                        validator: (value) =>
+                            value.isEmpty && value.length != 11
+                                ? 'entre com um dado válido'
+                                : null,
+                        decoration: InputDecoration(
+                            filled: true,
+                            fillColor: Colors.white,
+                            border: InputBorder.none,
+                            hintText: 'Número de Emergência'),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      isDoctor ? crmInput() : bloodType(),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width * 8 / 10,
+                        height: MediaQuery.of(context).size.height * 0.7 / 10,
+                        color: Colors.white,
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 110),
+                          child: DropdownButton(
+                              value: widget._value,
+                              items: [
+                                DropdownMenuItem(
+                                  child: Text("Feminino"),
+                                  value: 1,
+                                ),
+                                DropdownMenuItem(
+                                  child: Text("Masculino"),
+                                  value: 2,
+                                ),
+                              ],
+                              onChanged: (value) {
+                                setState(() {
+                                  widget._value = value;
+                                  print(widget._value);
+                                });
+                              }),
                         ),
                       ),
-                    ),
+                      SizedBox(
+                        height: 55,
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width * 8 / 10,
+                        height: MediaQuery.of(context).size.height * 0.8 / 10,
+                        // alignment: Alignment.bottomCenter,
+                        child: RaisedButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8)),
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        SignUpConfirmation()));
+                          },
+                          color: Color(0xFF1A8474),
+                          child: Text(
+                            'Finalizar Login',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
-    );
+          ),
+        ));
   }
 
   Widget bloodType() {

@@ -1,17 +1,22 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:saude_no_bolso/screen/first_access1_screen.dart';
 import 'package:saude_no_bolso/screen/profile_screen.dart';
 import 'package:saude_no_bolso/models/user.dart';
 import 'package:toast/toast.dart';
+import 'package:saude_no_bolso/globals.dart' as globals;
 
 import 'login_screen.dart';
 
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
 class SignUpScreen extends StatefulWidget {
+  int _value = 1;
   bool isSignUpEnabled;
 
   @override
@@ -78,113 +83,228 @@ class _SignUpScreenState extends State<SignUpScreen>
     return Scaffold(
         resizeToAvoidBottomInset: false,
         resizeToAvoidBottomPadding: false,
+        appBar: AppBar(
+          leading: Builder(
+            builder: (BuildContext context) {
+              return IconButton(
+                  icon: Icon(
+                    Icons.arrow_back,
+                    color: Color(0xFF1A8474),
+                  ),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  });
+            },
+          ),
+          titleSpacing: MediaQuery.of(context).size.width * 2.3 / 10,
+          backgroundColor: Color(0xFFF0F0F7),
+          elevation: 0,
+          title: Text(
+            "Cadastro",
+            style: TextStyle(
+              color: Color(0xFF1A8474),
+              fontWeight: FontWeight.bold,
+              fontSize: 22,
+            ),
+          ),
+        ),
         body: SingleChildScrollView(
           padding: EdgeInsets.only(bottom: bottom),
           reverse: true,
           child: Material(
-            color: Colors.white,
-            child: Container(
-              color: Colors.white,
-              child: Column(
-                children: [
-                  InkWell(
-                    // to dismiss the keyboard when the user tabs out of the TextField
-                    splashColor: Colors.transparent,
-                    onTap: () {
-                      FocusScope.of(context).requestFocus(FocusNode());
-                    },
-                    child: Column(
-                      children: [
-                        Container(
-                          height: MediaQuery.of(context).size.height / 2,
-                          width: MediaQuery.of(context).size.width,
-                          color: Color(0xFF1A8474),
-                          child: Image.network(
-                            'https://cdn.pixabay.com/photo/2017/09/02/22/10/dolphin-2708695_960_720.png',
-                            scale: 3,
-                          ),
-                        ),
-                        Container(
-                          height: 300,
-                          color: Colors.grey[50],
-                          child: Container(
-                            color: Colors.grey[50],
-                            //padding: const EdgeInsets.all(20.0),
+            child: Stack(
+              children: [
+                Column(
+                  children: [
+                    Container(
+                      height: MediaQuery.of(context).size.height * 9 / 10,
+                      width: MediaQuery.of(context).size.height * 9 / 10,
+                      color: Color(0xFFF0F0F7),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        //mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.all(20),
                             child: Column(
-                              children: <Widget>[
-                                Padding(
-                                  padding: EdgeInsets.only(left: 60, right: 60),
-                                  child: Column(
-                                    children: [
-                                      Form(
-                                        autovalidate: true,
-                                        child: TextFormField(
-                                          controller: _email,
-                                          validator: (value) =>
-                                              EmailValidator.validate(value)
-                                                  ? null
-                                                  : "Entre com um email válido",
-                                          decoration: InputDecoration(
-                                              //hintStyle: ,
-                                              filled: true,
-                                              fillColor: Colors.green[100],
-                                              border: InputBorder.none,
-                                              icon: Icon(Icons.email),
-                                              hintText: 'Email'),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 5,
-                                      ),
-                                      Form(
-                                        onChanged: () {
-                                          _password.text.toString().length >
-                                                      5 &&
-                                                  _password.text
-                                                          .toString()
-                                                          .length <
-                                                      16
-                                              ? passwordValidator = true
-                                              : passwordValidator = false;
-                                        },
-                                        autovalidate: true,
-                                        child: TextFormField(
-                                          validator: (value) => value
-                                                          .toString()
-                                                          .length >
-                                                      5 &&
-                                                  value.toString().length < 16
-                                              ? null
-                                              : "Necessária senha entre 6 e 15 dígitos",
-                                          controller: _password,
-                                          decoration: InputDecoration(
-                                              filled: true,
-                                              fillColor: Colors.green[100],
-                                              border: InputBorder.none,
-                                              icon: Icon(Icons.lock),
-                                              hintText: 'Senha'),
-                                          //focusNode: _focusNode,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 5,
-                                      )
-                                    ],
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Crie sua \n conta gratuita',
+                                  style: TextStyle(
+                                    color: Color(0xFF32264D),
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                SizedBox(
-                                  height: 30,
+                                Container(
+                                  padding: const EdgeInsets.only(
+                                      top: 0.0, bottom: 10),
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.6,
+                                  child: Text(
+                                    'Basta preencher esses dados e você estará dando um grande passo na sua vida.',
+                                    textAlign: TextAlign.start,
+                                    style: TextStyle(
+                                      decoration: TextDecoration.none,
+                                      color: Color(0xFF6A6180),
+                                      fontSize: 15.6,
+                                    ),
+                                  ),
                                 ),
-                                _buildSignUpButton()
+                                Divider(
+                                  color: Colors.grey[600],
+                                  thickness: 3,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                    top: 0,
+                                    left: 120,
+                                  ),
+                                  child: GestureDetector(
+                                    child: Container(
+                                      width: 120,
+                                      height: 120,
+                                      decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          image: DecorationImage(
+                                              fit: BoxFit.fill,
+                                              image: globals.user.photo != ''
+                                                  ? FileImage(
+                                                      File(globals.user.photo))
+                                                  : AssetImage(
+                                                      "assets/person.png"))),
+                                    ),
+                                    onTap: () {
+                                      ImagePicker.pickImage(
+                                              source: ImageSource.camera)
+                                          .then((file) {
+                                        if (file == null) return;
+                                        setState(() {
+                                          globals.user.photo = file.path;
+                                        });
+                                      });
+                                    },
+                                  ),
+                                ),
+                                Column(
+                                  children: <Widget>[
+                                    Padding(
+                                      padding:
+                                          EdgeInsets.only(left: 60, right: 60),
+                                      child: Column(
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                const EdgeInsets.only(top: 22),
+                                            child: Form(
+                                              autovalidate: true,
+                                              child: TextFormField(
+                                                controller: _email,
+                                                validator: (value) =>
+                                                    EmailValidator.validate(
+                                                            value)
+                                                        ? null
+                                                        : "Entre com um email válido",
+                                                decoration: InputDecoration(
+                                                  //hintStyle:
+                                                  filled: true,
+                                                  fillColor: Color(0xFFE6E6F0),
+                                                  border: InputBorder.none,
+                                                  hintText: 'E-mail',
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 5,
+                                          ),
+                                          Form(
+                                            onChanged: () {
+                                              _password.text.toString().length >
+                                                          5 &&
+                                                      _password.text
+                                                              .toString()
+                                                              .length <
+                                                          16
+                                                  ? passwordValidator = true
+                                                  : passwordValidator = false;
+                                            },
+                                            autovalidate: true,
+                                            child: TextFormField(
+                                              validator: (value) => value
+                                                              .toString()
+                                                              .length >
+                                                          5 &&
+                                                      value.toString().length <
+                                                          16
+                                                  ? null
+                                                  : "Necessária senha entre 6 e 15 dígitos",
+                                              controller: _password,
+                                              decoration: InputDecoration(
+                                                  filled: true,
+                                                  fillColor: Color(0xFFE6E6F0),
+                                                  border: InputBorder.none,
+                                                  hintText: 'Senha'),
+                                              //focusNode: _focusNode,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 5,
+                                          ),
+                                          Container(
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                8 /
+                                                10,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.7 /
+                                                10,
+                                            color: Color(0xFFE6E6F0),
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 10),
+                                              child: DropdownButton(
+                                                  value: widget._value,
+                                                  items: [
+                                                    DropdownMenuItem(
+                                                      child: Text("Paciente"),
+                                                      value: 1,
+                                                    ),
+                                                    DropdownMenuItem(
+                                                      child: Text("Médico"),
+                                                      value: 2,
+                                                    ),
+                                                  ],
+                                                  onChanged: (value) {
+                                                    setState(() {
+                                                      widget._value = value;
+                                                      print(widget._value);
+                                                    });
+                                                  }),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                    _buildSignUpButton()
+                                  ],
+                                ),
                               ],
                             ),
                           ),
-                        )
-                      ],
+                        ],
+                      ),
                     ),
-                  )
-                ],
-              ),
+                  ],
+                ),
+              ],
             ),
           ),
         ));
@@ -219,7 +339,7 @@ class _SignUpScreenState extends State<SignUpScreen>
         // );
       },
       disabledColor: Colors.grey[200],
-      color: Colors.green,
+      color: Color(0xFF1A8474),
       textColor: Colors.white,
       disabledTextColor: Colors.grey[350],
       elevation: 10,
@@ -227,7 +347,7 @@ class _SignUpScreenState extends State<SignUpScreen>
         'Cadastrar-se',
         style: TextStyle(fontSize: 17),
       ),
-      padding: EdgeInsets.only(top: 10, bottom: 10, left: 70, right: 70),
+      padding: EdgeInsets.only(top: 15, bottom: 15, left: 70, right: 70),
     );
   }
 }

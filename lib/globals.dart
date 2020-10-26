@@ -1,9 +1,11 @@
 import 'package:saude_no_bolso/models/patient.dart';
 import 'package:saude_no_bolso/models/user.dart';
 
-Patient patient = Patient('', '', '', '', '', '', '', '', '', '');
+import 'models/user.dart';
 
-UserAccount user = UserAccount('', '');
+UserAccount user = UserAccount('', '', '');
+
+Patient patient = Patient('', '', '', '', '', '', '', '', '', '');
 
 List examTypeList = [
   "Glicemia Jejum",

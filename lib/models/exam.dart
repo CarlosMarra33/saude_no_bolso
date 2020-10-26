@@ -3,9 +3,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class Exam {
   String type;
   String value;
-  Timestamp date;
+  String date;
 
-  Exam(String type, String value, DateTime date) {
+  Exam(String type, String value, String date) {
     this.type = type;
     this.value = value;
     this.date;

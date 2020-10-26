@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         secondaryHeaderColor: Colors.green,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: BaseScreen(),
+      home: SplashScreenPage(),
     );
   }
 }

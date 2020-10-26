@@ -1,18 +1,36 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:saude_no_bolso/common/custom_drawer/custom_drawer.dart';
 import 'package:saude_no_bolso/screen/profile_screen.dart';
 import 'package:saude_no_bolso/globals.dart' as globals;
 
 class ExamScreen extends StatefulWidget {
+  String type = '';
   int _value = 1;
   @override
   _ExamScreenState createState() => _ExamScreenState();
 }
 
 class _ExamScreenState extends State<ExamScreen> {
+  TextEditingController _examValue = TextEditingController();
+
+  sendExam() async {
+    var result = await FirebaseFirestore.instance.collection('exams').add({
+      'date': '25 de outubro de 2020 11:11:11 UTC-3',
+      'email': globals.patient.email,
+      'type': widget.type,
+      'value': _examValue.text
+    });
+    print(result);
+  }
+
   @override
   Widget build(BuildContext context) {
+    final bottom = MediaQuery.of(context).viewInsets.bottom;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomPadding: false,
       extendBodyBehindAppBar: false,
       drawer: CustomDrawer(),
       appBar: AppBar(
@@ -95,68 +113,60 @@ class _ExamScreenState extends State<ExamScreen> {
                               value: widget._value,
                               items: [
                                 DropdownMenuItem(
-                                  child: Text("Feminino"),
+                                  child: Text(globals.examTypeList[0]),
+                                  onTap: () {
+                                    widget.type = globals.examTypeList[0];
+                                  },
                                   value: 1,
                                 ),
                                 DropdownMenuItem(
-                                  child: Text("Masculino"),
+                                  child: Text(globals.examTypeList[1]),
+                                  onTap: () {
+                                    widget.type = globals.examTypeList[1];
+                                  },
                                   value: 2,
                                 ),
                                 DropdownMenuItem(
-                                  child: Text("Masculino"),
-                                  value: 2,
+                                  child: Text(globals.examTypeList[2]),
+                                  onTap: () {
+                                    widget.type = globals.examTypeList[2];
+                                  },
+                                  value: 3,
                                 ),
                                 DropdownMenuItem(
-                                  child: Text("Masculino"),
-                                  value: 2,
+                                  child: Text(globals.examTypeList[3]),
+                                  onTap: () {
+                                    widget.type = globals.examTypeList[3];
+                                  },
+                                  value: 4,
                                 ),
                                 DropdownMenuItem(
-                                  child: Text("Masculino"),
-                                  value: 2,
+                                  child: Text(globals.examTypeList[4]),
+                                  onTap: () {
+                                    widget.type = globals.examTypeList[4];
+                                  },
+                                  value: 5,
                                 ),
                                 DropdownMenuItem(
-                                  child: Text("Masculino"),
-                                  value: 2,
+                                  child: Text(globals.examTypeList[5]),
+                                  onTap: () {
+                                    widget.type = globals.examTypeList[5];
+                                  },
+                                  value: 6,
                                 ),
                                 DropdownMenuItem(
-                                  child: Text("Masculino"),
-                                  value: 2,
+                                  child: Text(globals.examTypeList[6]),
+                                  onTap: () {
+                                    widget.type = globals.examTypeList[6];
+                                  },
+                                  value: 7,
                                 ),
                                 DropdownMenuItem(
-                                  child: Text("Masculino"),
-                                  value: 2,
-                                ),
-                                DropdownMenuItem(
-                                  child: Text("Masculino"),
-                                  value: 2,
-                                ),
-                                DropdownMenuItem(
-                                  child: Text("Masculino"),
-                                  value: 2,
-                                ),
-                                DropdownMenuItem(
-                                  child: Text("Masculino"),
-                                  value: 2,
-                                ),
-                                DropdownMenuItem(
-                                  child: Text("Masculino"),
-                                  value: 2,
-                                ),
-                                DropdownMenuItem(
-                                  child: Text("Masculino"),
-                                  value: 2,
-                                ),
-                                DropdownMenuItem(
-                                  child: Text("Masculino"),
-                                  value: 2,
-                                ),
-                                DropdownMenuItem(
-                                  child: Text("Masculino"),
-                                  value: 2,
-                                ),
-                                DropdownMenuItem(
-                                  child: Text("Masculino"),
-                                  value: 2,
+                                  child: Text(globals.examTypeList[7]),
+                                  onTap: () {
+                                    widget.type = globals.examTypeList[7];
+                                  },
+                                  value: 8,
                                 ),
                               ],
                               onChanged: (value) {
@@ -170,16 +180,20 @@ class _ExamScreenState extends State<ExamScreen> {
                       SizedBox(
                         height: 10,
                       ),
-                      TextFormField(
-                        decoration: InputDecoration(
-                            labelText: 'Sobrenome',
-                            labelStyle: TextStyle(
-                              color: Colors.black,
-                            ),
-                            filled: true,
-                            fillColor: Color(0xFFE6E6F0),
-                            border: InputBorder.none,
-                            hintText: '${globals.patient.lastName}'),
+                      InkWell(
+                        onTap: () {},
+                        child: TextFormField(
+                          controller: _examValue,
+                          decoration: InputDecoration(
+                              labelText: 'Valor',
+                              labelStyle: TextStyle(
+                                color: Colors.black,
+                              ),
+                              filled: true,
+                              fillColor: Color(0xFFE6E6F0),
+                              border: InputBorder.none,
+                              hintText: 'Valor'),
+                        ),
                       ),
                       SizedBox(
                         height: 10,
@@ -197,6 +211,7 @@ class _ExamScreenState extends State<ExamScreen> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10)),
                 onPressed: () {
+                  sendExam();
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => ProfileScreen()));
                 },
