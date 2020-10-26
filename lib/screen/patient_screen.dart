@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:saude_no_bolso/common/custom_drawer/custom_drawer.dart';
-import 'package:saude_no_bolso/globals.dart' as globals;
 
 import 'exam_screen.dart';
 import 'exams_screen.dart';
 
-class ProfileScreen extends StatelessWidget {
+class PatientScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+   return Scaffold(
       extendBodyBehindAppBar: false,
-      drawer: CustomDrawer(),
       appBar: AppBar(
         titleSpacing: MediaQuery.of(context).size.width * 2.8 / 10,
         backgroundColor: Color.fromRGBO(26, 132, 116, 1),
@@ -58,7 +55,7 @@ class ProfileScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              '${globals.patient.firstName}',
+                              'Cayo',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.bold,
@@ -148,7 +145,7 @@ class ProfileScreen extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.all(5.0),
                             child: Text(
-                              '${globals.patient.email}',
+                              'Cayo@gmail.com}',
                               style: TextStyle(
                                   color: Color(0xFF6A6180),
                                   fontWeight: FontWeight.bold),
@@ -174,7 +171,7 @@ class ProfileScreen extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.all(5.0),
                             child: Text(
-                              '${globals.patient.birthdate}',
+                              '22/22/1962',
                               style: TextStyle(
                                   color: Color(0xFF6A6180),
                                   fontWeight: FontWeight.bold),
@@ -200,7 +197,7 @@ class ProfileScreen extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.all(5.0),
                             child: Text(
-                              '${globals.patient.phone}',
+                              '222222222222',
                               style: TextStyle(
                                   color: Color(0xFF6A6180),
                                   fontWeight: FontWeight.bold),
@@ -226,7 +223,7 @@ class ProfileScreen extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.all(5.0),
                             child: Text(
-                              '${globals.patient.emergencyPhone}',
+                              '222222222222',
                               style: TextStyle(
                                   color: Color(0xFF6A6180),
                                   fontWeight: FontWeight.bold),
@@ -252,7 +249,7 @@ class ProfileScreen extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.all(5.0),
                             child: Text(
-                              '${globals.patient.bloodType}',
+                              'A+',
                               style: TextStyle(
                                   color: Color(0xFF6A6180),
                                   fontWeight: FontWeight.bold),
@@ -274,11 +271,11 @@ class ProfileScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10)),
                 onPressed: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => ExamScreen()));
+                      MaterialPageRoute(builder: (context) => ExamsScreen()));
                 },
                 color: Color(0xFF1A8474),
                 child: Text(
-                  'Adcionar Exame',
+                  'Exames',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,

@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:saude_no_bolso/common/custom_drawer/custom_drawer.dart';
-import 'package:saude_no_bolso/screen/chat_screen.dart';
+import 'package:saude_no_bolso/screen/patient_screen.dart';
 
-class Chats extends StatelessWidget {
+import 'doctor_profile_screen.dart';
+
+class PatientsScreen extends StatefulWidget {
+  @override
+  _PatientsScreenState createState() => _PatientsScreenState();
+}
+
+class _PatientsScreenState extends State<PatientsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -96,7 +103,19 @@ class Chats extends StatelessWidget {
                                             padding: const EdgeInsets.only(
                                                 top: 10.0),
                                             child: Text(
-                                              'Ultima mensagem',
+                                              'Cayo@gmail.com',
+                                              style: TextStyle(
+                                                color: Color(0xFF6A6180),
+                                                // fontWeight: FontWeight.bold,
+                                                fontSize: 15,
+                                              ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                top: 10.0),
+                                            child: Text(
+                                              'A+',
                                               style: TextStyle(
                                                 color: Color(0xFF6A6180),
                                                 // fontWeight: FontWeight.bold,
@@ -125,7 +144,8 @@ class Chats extends StatelessWidget {
               onTap: () => {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ChatScreen()),
+                  MaterialPageRoute(
+                      builder: (context) => PatientScreen()),
                 )
               },
             );

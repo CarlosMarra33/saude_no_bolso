@@ -8,13 +8,13 @@ import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:qrscan/qrscan.dart' as scanner;
 
-class QrCoderReaderScreen extends StatefulWidget {
+class QrCodeReaderScreen extends StatefulWidget {
   TextEditingController _outputController;
   @override
-  _QrCoderReaderScreenState createState() => _QrCoderReaderScreenState();
+  _QrCodeReaderScreenState createState() => _QrCodeReaderScreenState();
 }
 
-class _QrCoderReaderScreenState extends State<QrCoderReaderScreen> {
+class _QrCodeReaderScreenState extends State<QrCodeReaderScreen> {
   Uint8List bytes = Uint8List(0);
   TextEditingController _inputController;
 

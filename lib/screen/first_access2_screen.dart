@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:saude_no_bolso/common/custom_drawer/custom_drawer.dart';
 import 'package:saude_no_bolso/screen/profile_screen.dart';
+import 'package:saude_no_bolso/screen/singUp_confirmation_screen.dart';
 
 class FirstAccess2 extends StatefulWidget {
   int _value = 1;
@@ -87,8 +88,7 @@ class _FirstAccess2State extends State<FirstAccess2> {
                     height: 20,
                   ),
                   TextFormField(
-                    validator: (value) => value.isEmpty &&          
-                            value.length != 11
+                    validator: (value) => value.isEmpty && value.length != 11
                         ? 'entre com um dado válido'
                         : null,
                     decoration: InputDecoration(
@@ -144,7 +144,7 @@ class _FirstAccess2State extends State<FirstAccess2> {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => ProfileScreen()));
+                                builder: (context) => SignUpConfirmation()));
                       },
                       color: Color(0xFF1A8474),
                       child: Text(
@@ -220,9 +220,7 @@ class _FirstAccess2State extends State<FirstAccess2> {
 
   Widget crmInput() {
     return TextFormField(
-      validator: (value) => value.isEmpty
-          ? 'entre com um dado válido'
-          : null,
+      validator: (value) => value.isEmpty ? 'entre com um dado válido' : null,
       decoration: InputDecoration(
           filled: true,
           fillColor: Colors.white,

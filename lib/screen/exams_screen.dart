@@ -8,6 +8,14 @@ class ExamsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Color(0xFF1A8474),
+        onPressed: () {},
+        child: Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
+      ),
       extendBodyBehindAppBar: false,
       drawer: CustomDrawer(),
       appBar: AppBar(
