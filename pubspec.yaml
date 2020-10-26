@@ -62,6 +62,7 @@ flutter:
     - assets/Feito.svg
     - assets/com nome.png
     - assets/sem nome.png
+    - assets/person.png
     
 
   # An image asset can refer to one or more resolution-specific "variants", see
