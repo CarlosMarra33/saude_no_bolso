@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:saude_no_bolso/common/custom_drawer/custom_drawer.dart';
+import 'package:saude_no_bolso/screen/patient_screen.dart';
 
 import 'doctor_profile_screen.dart';
 
@@ -102,7 +103,19 @@ class _PatientsScreenState extends State<PatientsScreen> {
                                             padding: const EdgeInsets.only(
                                                 top: 10.0),
                                             child: Text(
-                                              'Ultima mensagem',
+                                              'Cayo@gmail.com',
+                                              style: TextStyle(
+                                                color: Color(0xFF6A6180),
+                                                // fontWeight: FontWeight.bold,
+                                                fontSize: 15,
+                                              ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                top: 10.0),
+                                            child: Text(
+                                              'A+',
                                               style: TextStyle(
                                                 color: Color(0xFF6A6180),
                                                 // fontWeight: FontWeight.bold,
@@ -132,7 +145,7 @@ class _PatientsScreenState extends State<PatientsScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => DoctorProfileScreen()),
+                      builder: (context) => PatientScreen()),
                 )
               },
             );
