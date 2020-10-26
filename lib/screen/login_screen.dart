@@ -133,7 +133,7 @@ class _LoginScreenState extends State<LoginScreen>
                   color: Color(0xFFFFFFA),
                   height: MediaQuery.of(context).size.height * 5 / 10,
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 60),
+                    padding: const EdgeInsets.only(top: 40),
                     child: Column(
                       children: [
                         Row(

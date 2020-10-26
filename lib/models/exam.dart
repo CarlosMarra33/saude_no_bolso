@@ -3,20 +3,20 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class Exam {
   String type;
   String value;
-  DateTime date;
+  Timestamp date;
 
   Exam(String type, String value, DateTime date) {
     this.type = type;
     this.value = value;
     this.date;
   }
-  List examTypeList = ["Glicemia Jejum","Glicemia Casual","TTOG","Colesterol Total","LDLc","ALT","HDLc","Triglicerideos"];
+
   Exam.fromSnapshot(DocumentSnapshot snapshot)
       : type = snapshot['type'],
         value = snapshot['value'],
         date = snapshot['date'];
-    
-  countValue(String value, String type) {    
+
+  countValue(String value, String type) {
     double points = 0.0;
 
     var valueDouble = double.parse(value);
